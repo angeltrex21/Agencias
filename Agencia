@@ -1,0 +1,231 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 1,
+   "id": "85cdffed-eaf9-4e65-b74a-f5c994913e59",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import pandas as pd\n",
+    "import matplotlib.pyplot as plt\n",
+    "import seaborn as sns\n",
+    "# Definición de las rutas de los archivos\n",
+    "ruta_archivo_1 = 'C:/Users/jacin/OneDrive/Documentos/base de datos de escuela/INVESCOBEDO.txt'\n",
+    "ruta_archivo_2 = 'C:/Users/jacin/OneDrive/Documentos/base de datos de escuela/INVAPODACA.txt'\n",
+    "ruta_archivo_3 = 'C:/Users/jacin/OneDrive/Documentos/base de datos de escuela/INVMONTERREY.txt'\n",
+    "ruta_archivo_4 = 'C:/Users/jacin/OneDrive/Documentos/base de datos de escuela/INVSANNICOLAS.txt'\n",
+    "\n",
+    "# Creación de los DataFrames utilizando las rutas definidas\n",
+    "df_1 = pd.read_csv(ruta_archivo_1, delimiter='|')  \n",
+    "df_2 = pd.read_csv(ruta_archivo_2, delimiter='|')  \n",
+    "df_3 = pd.read_csv(ruta_archivo_3, delimiter='|')\n",
+    "df_4 = pd.read_csv(ruta_archivo_4, delimiter='|')\n",
+    "\n",
+    "# Concatenación de los DataFrames en uno solo\n",
+    "df_completo = pd.concat([df_1, df_2, df_3, df_4], ignore_index=True)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "id": "f7723f92-30ce-4567-8f9c-85ea165b6786",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      " Vin                  object\n",
+      "NumeroInventario      int64\n",
+      "CostoCompra         float64\n",
+      "CostoActual         float64\n",
+      "Anio                  int64\n",
+      "Marca                object\n",
+      "Modelo               object\n",
+      "Version              object\n",
+      "Color                object\n",
+      "Interior             object\n",
+      "Estado               object\n",
+      "TipoCompra           object\n",
+      "FechaCompra          object\n",
+      "Placas              float64\n",
+      "NuevoUsado           object\n",
+      "Ubicacion            object\n",
+      "Nada                float64\n",
+      "dtype: object\n",
+      " <bound method DataFrame.info of                    Vin  NumeroInventario  CostoCompra  CostoActual  Anio  \\\n",
+      "0    LJD5AA1D1R0154996             16726    405859.71    405859.71  2024   \n",
+      "1    3KPFE4AD0SE079927             16610    364629.60    364629.60  2025   \n",
+      "2    3KPFB4AA3SE064580             16817    285704.60    285704.60  2025   \n",
+      "3    3KPFB4AA8SE086283             17662    285704.60    285704.60  2025   \n",
+      "4    3KPFU4AE2SE058301             16618    362051.56    362051.56  2025   \n",
+      "..                 ...               ...          ...          ...   ...   \n",
+      "338  3KPFE5AD6SE098956             17621    364631.20    364631.20  2025   \n",
+      "339  3KPFE5AD9SE095842             17626    364631.20    364631.20  2025   \n",
+      "340  3KPFE5AD5SE096373             17627    364631.20    364631.20  2025   \n",
+      "341  3KPFC5AA1SE089447             16802    304647.20    304647.20  2025   \n",
+      "342  3KPFC5AA0SE085339             17680    304647.20    304647.20  2025   \n",
+      "\n",
+      "    Marca    Modelo                    Version             Color  \\\n",
+      "0     KIA    SELTOS         SELTOS 1.5L SX CVT         VIVID RED   \n",
+      "1     KIA  K3 SEDAN  K3 2.0L GT-LINE A/T Sedan         WAVY BLUE   \n",
+      "2     KIA  K3 SEDAN       K3 1.6L LX A/T Sedan        AZURE BLUE   \n",
+      "3     KIA  K3 SEDAN       K3 1.6L LX A/T Sedan  SNOW WHITE PEARL   \n",
+      "4     KIA     K4 SD           K4 2.0 NU EX IVT        AZURE BLUE   \n",
+      "..    ...       ...                        ...               ...   \n",
+      "338   KIA     K3 HB     K3 2.0L GT-LINE A/T HB         FIERY RED   \n",
+      "339   KIA     K3 HB     K3 2.0L GT-LINE A/T HB         WAVE BLUE   \n",
+      "340   KIA     K3 HB     K3 2.0L GT-LINE A/T HB  SNOW WHITE PEARL   \n",
+      "341   KIA     K3 HB          K3 1.6L EX A/T HB      SILKY SILVER   \n",
+      "342   KIA     K3 HB          K3 1.6L EX A/T HB        AZURE BLUE   \n",
+      "\n",
+      "         Interior      Estado   TipoCompra FechaCompra  Placas NuevoUsado  \\\n",
+      "0    SATURN BLACK       PDAMR  INTERCAMBIO    26/09/24     NaN      NUEVO   \n",
+      "1    SATURN BLACK  DISPONIBLE  INTERCAMBIO    28/10/24     NaN      NUEVO   \n",
+      "2    SATURN BLACK       EDAMR  INTERCAMBIO    09/09/24     NaN      NUEVO   \n",
+      "3    SATURN BLACK       PJCCJ  INTERCAMBIO    15/01/25     NaN      NUEVO   \n",
+      "4     MEDIUM GRAY       EDAMR  INTERCAMBIO    19/11/24     NaN      NUEVO   \n",
+      "..            ...         ...          ...         ...     ...        ...   \n",
+      "338  SATURN BLACK  DISPONIBLE  INTERCAMBIO    07/02/25     NaN      NUEVO   \n",
+      "339  SATURN BLACK  DISPONIBLE  INTERCAMBIO    06/02/25     NaN      NUEVO   \n",
+      "340  SATURN BLACK  DISPONIBLE  INTERCAMBIO    06/02/25     NaN      NUEVO   \n",
+      "341  SATURN BLACK  DISPONIBLE  INTERCAMBIO    06/12/24     NaN      NUEVO   \n",
+      "342  SATURN BLACK  DISPONIBLE  INTERCAMBIO    28/12/24     NaN      NUEVO   \n",
+      "\n",
+      "       Ubicacion  Nada  \n",
+      "0       ESCOBEDO   NaN  \n",
+      "1       ESCOBEDO   NaN  \n",
+      "2       ESCOBEDO   NaN  \n",
+      "3       ESCOBEDO   NaN  \n",
+      "4       ESCOBEDO   NaN  \n",
+      "..           ...   ...  \n",
+      "338  SAN NICOLAS   NaN  \n",
+      "339  SAN NICOLAS   NaN  \n",
+      "340  SAN NICOLAS   NaN  \n",
+      "341  SAN NICOLAS   NaN  \n",
+      "342  SAN NICOLAS   NaN  \n",
+      "\n",
+      "[343 rows x 17 columns]>\n"
+     ]
+    }
+   ],
+   "source": [
+    "df_completo.dtypes\n",
+    "print(\"\",df_completo.dtypes)\n",
+    "df_completo.info\n",
+    "print(\"\",df_completo.info)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "id": "d431817c-87d7-4ff8-87b5-38849f13ba4a",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "cantidad de unidades:  343\n"
+     ]
+    }
+   ],
+   "source": [
+    "#Cantidad de unidades\n",
+    "\n",
+    "cantidad_unidades=len(df_completo)\n",
+    "print(\"cantidad de unidades: \",cantidad_unidades)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 6,
+   "id": "23872fcf-80ef-4717-b0a8-edbf4d4f8b47",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "cantidad de unidades disponibles 288\n"
+     ]
+    }
+   ],
+   "source": [
+    "#Cantidad de unidades disponibles\n",
+    "cantidad_disponibles=df_completo[df_completo['Estado']=='DISPONIBLE'].shape[0]\n",
+    "print(\"cantidad de unidades disponibles\",cantidad_disponibles)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "id": "35369055-7743-44d7-9634-02cd64dd219b",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "cantidad de  no disponibles 0\n"
+     ]
+    }
+   ],
+   "source": [
+    "#Cantidad de unidades NO disponibles\n",
+    "cantidad_NO_disponibles=df_completo[df_completo['Estado']=='NODISPONIBLE'].shape[0]\n",
+    "print(\"cantidad de  no disponibles\",cantidad_NO_disponibles)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "id": "0e3cdf83-4e15-402f-bc0e-40e0d24b483a",
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "EL total de costo de las unidades: 117185945.08\n"
+     ]
+    }
+   ],
+   "source": [
+    "#Total de costos de las unidades \n",
+    "total_costo_unidades=df_completo['CostoActual'].sum()\n",
+    "print(\"EL total de costo de las unidades:\",total_costo_unidades)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "316204eb-8e4c-4534-97a0-02efddb984dc",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.13.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
